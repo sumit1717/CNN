@@ -13,6 +13,12 @@ class FullyConnected(Base.BaseLayer):
         # self.biases = np.random.uniform(0, 1, (1, output_size))
 
         self.optimizer = None
+
+    def initialize(self, weights_initializer, bias_initializer):
+        weights = weights_initializer.initialize((self.input_size, self.output_size), self.input_size, self.output_size)
+        biases = bias_initializer.initialize((1, self.output_size), self.input_size, self.output_size)
+        self.weights = np.vstack((weights, biases))
+
     def forward(self, input_tensor):
         biases_tensor_ones = np.ones((input_tensor.shape[0], 1))
         self.input_tensor = np.hstack((input_tensor, biases_tensor_ones))
