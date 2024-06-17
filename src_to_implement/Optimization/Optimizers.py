@@ -19,7 +19,6 @@ class SgdWithMomentum:
 
     def calculate_update(self, weight_tensor, gradient_tensor):
         momentum_tensor = self.momentum_rate * self.velocity_tensor - self.learning_rate * gradient_tensor
-        # print("----------momentum_tensormomentum_tensormomentum_tensor--------",weight_tensor, momentum_tensor, gradient_tensor, "----------momentum_tensormomentum_tensormomentum_tensor--------")
         self.velocity_tensor = momentum_tensor
         updated_weights_tensor_momentum = weight_tensor + momentum_tensor
         return updated_weights_tensor_momentum
